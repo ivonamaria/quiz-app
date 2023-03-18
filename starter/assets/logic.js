@@ -13,6 +13,9 @@ const feedback = document.getElementById('feedback');
 // Adding event listener to innitialize the start function when the button in clicked
 startButton.addEventListener('click', start);
 
+let currentQuestionIndex = 0;
+
+
 function start() {
     startScreen.classList.add('hide');
     questionsBox.classList.remove('hide');
@@ -60,8 +63,7 @@ function start() {
         answerButton.addEventListener('click', checkAnswer);
       }
     }
-  }
-  
+  }  
 
 function end() {
   questionsBox.classList.add('hide');

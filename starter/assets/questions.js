@@ -15,7 +15,7 @@ const quizQuestions = [
 
   {
       question: "Both var and let keywords are used to define a variable in Javascript?",
-      options: ["getElementbyId()", "getElementsByClassNAme()", "All of above", "None of the above"],
+      options: ["getElementbyId()", "getElementsByClassNAme()", "All of the above", "None of the above"],
       answer: "All of the above",
   },
 
