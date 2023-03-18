@@ -1,6 +1,6 @@
 // JavaScript questions 
 
-const codeQuiz = [
+const quizQuestions = [
   {
       question: "Javascript is an _______ language?",
       options: ["Object-Oriented", "Object-Based", "Procedural", "None of the above"],
