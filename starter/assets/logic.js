@@ -10,30 +10,32 @@ const initialsInput = document.getElementById('initials');
 const submit = document.getElementById('submit');
 const feedback = document.getElementById('feedback');
 
+// console.log(currentQuestionIndex)
 // Adding event listener to innitialize the start function when the button in clicked
+let currentQuestionIndex = 0;
 startButton.addEventListener('click', start);
 
-let currentQuestionIndex = 0;
 
 
 function start() {
     startScreen.classList.add('hide');
     questionsBox.classList.remove('hide');
-  
+    
     // Display the first question and options
     questionTitle.innerText = quizQuestions[0].question;
     let answers = quizQuestions[0].options;
     for (let i = 0; i < answers.length; i++) {
-      let answerButton = document.createElement('button');
-      choices.appendChild(answerButton);
-      answerButton.setAttribute('value', answers[i]);
-      answerButton.innerText = answers[i];
-      answerButton.addEventListener('click', checkAnswer);
+        let answerButton = document.createElement('button');
+        choices.appendChild(answerButton);
+        answerButton.setAttribute('value', answers[i]);
+        answerButton.innerText = answers[i];
+        answerButton.addEventListener('click', checkAnswer);
     }
-  
+    
     timeInterval();
-  }
-  
+}
+
+
   function checkAnswer(event) {
     let selectedAnswer = event.target.value;
   

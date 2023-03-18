@@ -9,7 +9,7 @@ const quizQuestions = [
 
   {
       question: "Which of the following keywords is used to define a variable in Javascript?",
-      options: ["var", "let", "All of above", "None of the above"],
+      options: ["var", "let", "All of the above", "None of the above"],
       answer: "All of the above",
   },
 
