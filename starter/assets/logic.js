@@ -12,7 +12,9 @@ const feedback = document.getElementById('feedback');
 
 // console.log(currentQuestionIndex)
 // Adding event listener to innitialize the start function when the button in clicked
+
 let currentQuestionIndex = 0;
+
 startButton.addEventListener('click', start);
 
 
@@ -35,24 +37,56 @@ function start() {
     timeInterval();
 }
 
+// Set timer for the quiz
+let count = 70;
+let timerInterval;
+
+function timeInterval() {
+  timeDisplay.innerText = count;
+
+  timerInterval = setInterval(function () {
+    count--;
+    timeDisplay.innerText = count;
+
+    if (count === 0) {
+      clearInterval(timerInterval); 
+      end();
+    }
+    else if (count < 0) {
+
+      clearInterval(timerInterval); 
+      timeDisplay.innerText = 0; 
+      end();
+    }
+  }, 1000);
+}
+
 
 function checkAnswer(event) {
-    let selectedAnswer = event.target.value;
-  
-    if (selectedAnswer === quizQuestions[currentQuestionIndex].answer) {
-      feedback.innerText = 'Correct!';
-      score += 1;
-    } else {
-      feedback.innerText =
-        'Wrong. The correct answer is: ' + quizQuestions[currentQuestionIndex].answer;
-    }
-  
+  let selectedAnswer = event.target.value;
+
+  if (selectedAnswer === quizQuestions[currentQuestionIndex].answer) {
+    feedback.innerText = 'Correct!';
+    score += 1;
+  } else {
+    feedback.innerText =
+      'Wrong. The correct answer is: ' + quizQuestions[currentQuestionIndex].answer;
+      count -= 10; // reduce timer by 10 seconds
+    // Code to display is answer is wrong
     feedback.classList.remove('hide');
-  
-    // Display the next question and options
-    questionTitle.innerText = quizQuestions[currentQuestionIndex + 1].question;
+  }
+
+
+
+  // Display the next question and options
+  let nextQuestionIndex = currentQuestionIndex + 1;
+  if (nextQuestionIndex >= quizQuestions.length) {
+    end();
+  } else {
+    currentQuestionIndex = nextQuestionIndex;
+    questionTitle.innerText = quizQuestions[currentQuestionIndex].question;
     choices.innerHTML = '';
-    let answers = quizQuestions[currentQuestionIndex + 1].options;
+    let answers = quizQuestions[currentQuestionIndex].options;
     for (let i = 0; i < answers.length; i++) {
       let answerButton = document.createElement('button');
       choices.appendChild(answerButton);
@@ -60,16 +94,9 @@ function checkAnswer(event) {
       answerButton.innerText = answers[i];
       answerButton.addEventListener('click', checkAnswer);
     }
-    
-    currentQuestionIndex++;
-  
-    if (currentQuestionIndex >= quizQuestions.length) {
-      end();
-    }
   }
-  
-  
-  
+}
+
 
 function end() {
   questionsBox.classList.add('hide');
