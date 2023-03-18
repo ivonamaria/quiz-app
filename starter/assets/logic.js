@@ -36,7 +36,7 @@ function start() {
 }
 
 
-  function checkAnswer(event) {
+function checkAnswer(event) {
     let selectedAnswer = event.target.value;
   
     if (selectedAnswer === quizQuestions[currentQuestionIndex].answer) {
@@ -50,22 +50,26 @@ function start() {
     feedback.classList.remove('hide');
   
     // Display the next question and options
+    questionTitle.innerText = quizQuestions[currentQuestionIndex + 1].question;
+    choices.innerHTML = '';
+    let answers = quizQuestions[currentQuestionIndex + 1].options;
+    for (let i = 0; i < answers.length; i++) {
+      let answerButton = document.createElement('button');
+      choices.appendChild(answerButton);
+      answerButton.setAttribute('value', answers[i]);
+      answerButton.innerText = answers[i];
+      answerButton.addEventListener('click', checkAnswer);
+    }
+    
     currentQuestionIndex++;
+  
     if (currentQuestionIndex >= quizQuestions.length) {
       end();
-    } else {
-      questionTitle.innerText = quizQuestions[currentQuestionIndex].question;
-      choices.innerHTML = '';
-      let answers = quizQuestions[currentQuestionIndex].options;
-      for (let i = 0; i < answers.length; i++) {
-        let answerButton = document.createElement('button');
-        choices.appendChild(answerButton);
-        answerButton.setAttribute('value', answers[i]);
-        answerButton.innerText = answers[i];
-        answerButton.addEventListener('click', checkAnswer);
-      }
     }
-  }  
+  }
+  
+  
+  
 
 function end() {
   questionsBox.classList.add('hide');
