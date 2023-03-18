@@ -10,13 +10,13 @@ const quizQuestions = [
   {
       question: "Which of the following keywords is used to define a variable in Javascript?",
       options: ["var", "let", "All of above", "None of the above"],
-      answer: "All of Above",
+      answer: "All of the above",
   },
 
   {
       question: "Both var and let keywords are used to define a variable in Javascript?",
       options: ["getElementbyId()", "getElementsByClassNAme()", "All of above", "None of the above"],
-      answer: "All of above",
+      answer: "All of the above",
   },
 
   {

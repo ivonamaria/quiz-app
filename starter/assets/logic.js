@@ -10,75 +10,16 @@ const initialsInput = document.getElementById('initials');
 const submit = document.getElementById('submit');
 const feedback = document.getElementById('feedback');
 
-
+// Adding event listener to innitialize the start function when the button in clicked
 startButton.addEventListener('click', start);
 
 function start() {
-  startScreen.classList.add('hide');
-  questionsBox.classList.remove('hide');
-
-  timeInterval();
-}
-
-
-let count = 70;
-let timerInterval;
-
-function timeInterval() {
-  timeDisplay.innerText = count;
-
-  timerInterval = setInterval(function () {
-    count--;
-    timeDisplay.innerText = count;
-
-    if (count === 0) {
-
-
-      clearInterval(timerInterval); 
-      end();
-    }
-    else if (count < 0) {
-
-    
-      clearInterval(timerInterval); 
-
-     
-      timeDisplay.innerText = 0; 
-      end();
-    }
-  }, 1000);
-}
-
-questionTitle.innerText = quizQuestions[0].question;
-let currentQuestionIndex = 0;
-let score = 0;
-
-let answered = false;
-
-function checkAnswer(event) {
-  let selectedAnswer = event.target.value;
-
-  if (selectedAnswer ===  quizQuestions[currentQuestionIndex].answer) {
-    feedback.innerText = 'Correct!';
-    score += 1;
-    feedback.classList.remove('hide');
-  } else {
-    feedback.innerText =
-      'Wrong. The correct answer is: ' + quizQuestions[currentQuestionIndex].answer;
-    count -= 10; 
-    feedback.classList.remove('hide');
-  }
-
-  answered = true; 
-
-  // next question
-  currentQuestionIndex++;
-  if (currentQuestionIndex >= quizQuestions.length) {
-    end();
-  } else {
-    questionTitle.innerText = quizQuestions[currentQuestionIndex].question;
-    choices.innerHTML = ''; 
-    let answers = quizQuestions[currentQuestionIndex].options;
+    startScreen.classList.add('hide');
+    questionsBox.classList.remove('hide');
+  
+    // Display the first question and options
+    questionTitle.innerText = quizQuestions[0].question;
+    let answers = quizQuestions[0].options;
     for (let i = 0; i < answers.length; i++) {
       let answerButton = document.createElement('button');
       choices.appendChild(answerButton);
@@ -86,18 +27,41 @@ function checkAnswer(event) {
       answerButton.innerText = answers[i];
       answerButton.addEventListener('click', checkAnswer);
     }
+  
+    timeInterval();
   }
-}
-
-// first question
-let answers = quizQuestions[0].options;
-for (let i = 0; i < answers.length; i++) {
-  let answerButton = document.createElement('button');
-  choices.appendChild(answerButton);
-  answerButton.setAttribute('value', answers[i]);
-  answerButton.innerText = answers[i];
-  answerButton.addEventListener('click', checkAnswer);
-}
+  
+  function checkAnswer(event) {
+    let selectedAnswer = event.target.value;
+  
+    if (selectedAnswer === quizQuestions[currentQuestionIndex].answer) {
+      feedback.innerText = 'Correct!';
+      score += 1;
+    } else {
+      feedback.innerText =
+        'Wrong. The correct answer is: ' + quizQuestions[currentQuestionIndex].answer;
+    }
+  
+    feedback.classList.remove('hide');
+  
+    // Display the next question and options
+    currentQuestionIndex++;
+    if (currentQuestionIndex >= quizQuestions.length) {
+      end();
+    } else {
+      questionTitle.innerText = quizQuestions[currentQuestionIndex].question;
+      choices.innerHTML = '';
+      let answers = quizQuestions[currentQuestionIndex].options;
+      for (let i = 0; i < answers.length; i++) {
+        let answerButton = document.createElement('button');
+        choices.appendChild(answerButton);
+        answerButton.setAttribute('value', answers[i]);
+        answerButton.innerText = answers[i];
+        answerButton.addEventListener('click', checkAnswer);
+      }
+    }
+  }
+  
 
 function end() {
   questionsBox.classList.add('hide');
