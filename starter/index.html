@@ -2,7 +2,6 @@
 <html lang="en-gb">
 
 <head>
-  <link rel="shortcut icon" href="#">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -14,11 +13,11 @@
 <body>
   <div class="scores"><a href="highscores.html">View Highscores</a></div>
 
-  <div class="timer">Time: <span id="time">0</span></div>
+  <div class="timer">Time Remaining: <span id="time">100</span></div>
 
   <div class="wrapper">
     <div id="start-screen" class="start">
-      <h1>Coding Quiz</h1>
+      <h1>Coding Quiz Challenge</h1>
       <p>
         Try to answer the following code-related questions within the time
         limit. Keep in mind that incorrect answers will penalize your
@@ -28,24 +27,42 @@
     </div>
 
     <div id="questions" class="hide">
+      <h2 id="question-number"></h2>
+      <br>
       <h2 id="question-title"></h2>
       <div id="choices" class="choices"></div>
+      <audio id="correctSound">
+        <source src="/assets/sfx/correct.wav" type="audio/wav">
+        Your browser does not support the audio element.
+      </audio>
+      <audio id="incorrectSound">
+        <source src="/assets/sfx/incorrect.wav" type="audio/wav">
+        Your browser does not support the audio element.
+      </audio>
     </div>
 
     <div id="end-screen" class="hide">
       <h2>All done!</h2>
       <p>Your final score is <span id="final-score"></span>.</p>
+      <p>Time Remaining: <span id="final-time"></span>.</p>
       <p>
-        Enter initials: <input type="text" id="initials" maxlength="3" />
+        Enter initials: <input type="text" id="initials" max="3" />
         <button id="submit">Submit</button>
       </p>
+    </div>
+
+    <div id="timeout-screen" class="hide">
+      <h2>You are out of time! Please refresh and try again!</h2>
     </div>
 
     <div id="feedback" class="feedback hide"></div>
   </div>
 
-  <script src="./assets/js/questions.js"></script>
-  <script src="./assets/js/logic.js"></script>
+  <!-- Adding in jquery link to simplify element creation and customization -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="./assets/logic.js"></script>
+  <script src="./assets/questions.js"></script>
+  <script src="./assets/scores.js"></script>
 </body>
 
 </html>
