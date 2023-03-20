@@ -4,11 +4,12 @@ This is a website that offers a JavaScript quiz to test the user's knowledge. Wh
 
 #  Links
 
-Quiz Application - Click Here
+Quiz Application - [Click Here](https://github.com/ivonamaria/quiz-app/deployments/activity_log?environment=github-pages)
 
-Repository - Click Here
+Repository - [Click Here](https://github.com/ivonamaria/quiz-app)
 
 # Screenshots
+
 
 
 
