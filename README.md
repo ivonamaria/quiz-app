@@ -10,12 +10,17 @@ Repository - [Click Here](https://github.com/ivonamaria/quiz-app)
 
 # Screenshots
 
+[!AltText](./assets/Screenshot%202023-03-30%20at%2023.08.09.png)
 
-
-
+[!AltText](./assets/Screenshot%202023-03-30%20at%2023.08.54.png)
 
 # Credits
 
+Stackoverflow
+
+1:1 TA sessions
+
+AskBCS Learning Assistant
 
 
 # License
